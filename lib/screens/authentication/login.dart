@@ -184,7 +184,9 @@ class _Sign_InState extends State<Sign_In> {
                       //anonymous button
                       GestureDetector(
                         //method for login Anonymous
-                        onTap: () {},
+                        onTap: () async {
+                          await _auth.signInAnonymously();
+                        },
                         child: Container(
                           height: 40,
                           width: 200,
