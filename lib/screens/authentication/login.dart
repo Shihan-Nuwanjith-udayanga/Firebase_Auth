@@ -25,6 +25,7 @@ class _Sign_InState extends State<Sign_In> {
   //email password states
   String email = "";
   String password = "";
+  String error = "";
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +101,7 @@ class _Sign_InState extends State<Sign_In> {
                         "Login with social accounts",
                         style: descriptionStyle,
                       ),
+                      Text(error, style: TextStyle(color: Colors.red)),
                       const SizedBox(
                         height: 20,
                       ),
@@ -148,7 +150,15 @@ class _Sign_InState extends State<Sign_In> {
                       //button
                       GestureDetector(
                         //method for login user
-                        onTap: () {},
+                        onTap: () async {
+                          dynamic result = await _auth
+                              .signInUsingEmailAndPassword(email, password);
+                          if (result == null) {
+                            setState(() {
+                              error = "Could not SignIn with those credentials";
+                            });
+                          }
+                        },
                         child: Container(
                           height: 40,
                           width: 200,
