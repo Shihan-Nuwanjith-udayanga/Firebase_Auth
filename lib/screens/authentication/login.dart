@@ -81,6 +81,7 @@ class _Sign_InState extends State<Sign_In> {
                       ),
                       //password
                       TextFormField(
+                        obscureText: true,
                         decoration:
                             textInputDecoration.copyWith(hintText: "password"),
                         validator: (val) =>

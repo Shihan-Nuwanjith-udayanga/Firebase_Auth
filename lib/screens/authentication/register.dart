@@ -86,6 +86,7 @@ class _RegisterState extends State<Register> {
                       ),
                       //password
                       TextFormField(
+                        obscureText: true,
                         decoration:
                             textInputDecoration.copyWith(hintText: "password"),
                         validator: (val) =>
