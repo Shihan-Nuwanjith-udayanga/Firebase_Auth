@@ -5,7 +5,11 @@ import 'package:firebase_auth_app/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class Sign_In extends StatefulWidget {
-  const Sign_In({super.key});
+  //function
+  final Function toggle;
+  const Sign_In({Key? key, required this.toggle}) : super(key: key);
+
+  // const Sign_In({super.key});
 
   @override
   State<Sign_In> createState() => _Sign_InState();
@@ -125,7 +129,9 @@ class _Sign_InState extends State<Sign_In> {
                           ),
                           GestureDetector(
                             //go to the Register page
-                            onTap: () {},
+                            onTap: () {
+                              widget.toggle();
+                            },
                             child: const Text(
                               "REGISTER",
                               style: TextStyle(
