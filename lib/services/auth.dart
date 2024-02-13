@@ -11,7 +11,7 @@ class AuthServices {
   }
 
   //create the stream for checking the auth changes in the user
-  Stream <UserModel?>get user{
+  Stream<UserModel?> get user {
     return _auth.authStateChanges().map(_userWithFirebaseUserUid);
   }
 
@@ -32,5 +32,12 @@ class AuthServices {
   //sign in using email and password
   //sign in using gmail
   //sign out
-  
+  Future signOut() async {
+    try {
+      return await _auth.signOut();
+    } catch (err) {
+      print(err.toString());
+      return null;
+    }
+  }
 }
