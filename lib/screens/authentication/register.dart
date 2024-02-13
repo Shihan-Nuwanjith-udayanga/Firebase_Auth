@@ -25,6 +25,7 @@ class _RegisterState extends State<Register> {
   //email password states
   String email = "";
   String password = "";
+  String error = "";
 
   @override
   Widget build(BuildContext context) {
@@ -101,6 +102,11 @@ class _RegisterState extends State<Register> {
                       const SizedBox(
                         height: 20,
                       ),
+                      //error text
+                      Text(
+                        error,
+                        style: TextStyle(color: Colors.red),
+                      ),
                       const Text(
                         "Login with social accounts",
                         style: descriptionStyle,
@@ -153,7 +159,17 @@ class _RegisterState extends State<Register> {
                       //button
                       GestureDetector(
                         //method for login user
-                        onTap: () {},
+                        onTap: () async {
+                          dynamic result = await _auth
+                              .registerWithEmailAndPassword(email, password);
+
+                          if (result == null) {
+                            //error
+                            setState(() {
+                              error = "Please enter a valid email!";
+                            });
+                          }
+                        },
                         child: Container(
                           height: 40,
                           width: 200,
